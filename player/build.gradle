@@ -1,0 +1,18 @@
+apply from: '../android-library.gradle'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation Libraries.appCompat
+    implementation Libraries.constraintLayout
+    implementation Libraries.ktxCore
+    implementation Libraries.materialDesign
+    implementation Libraries.koin
+    implementation Libraries.koinAndroid
+    implementation Libraries.koinAndroidFragment
+    implementation Libraries.koinAndroidScope
+    implementation Libraries.koinAndroidViewModel
+    implementation ExoPlayer.core
+    implementation ExoPlayer.ui
+}

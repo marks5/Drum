@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Drum</string>
+    <string name="greetings">E ae</string>
+    <string name="title_txt">O que você quer assistir hoje?</string>
+    <string name="home_recent">Recentes</string>
+    <string name="search_txt">Procurar</string>
+    <string name="anime_poster">anime poster</string>
+    <string name="home_popular">Populares</string>
+</resources>

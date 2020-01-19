@@ -1,0 +1,26 @@
+apply from: '../android-library.gradle'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(":domain")
+
+    implementation Libraries.koin
+    implementation Libraries.koinAndroid
+
+    implementation Libraries.rxJava
+    implementation Libraries.rxAndroid
+    implementation Libraries.rxKotlin
+
+    implementation Libraries.gson
+
+    implementation Libraries.retrofit
+    implementation Libraries.retrofitRxAdapter
+    implementation Libraries.retrofitGsonConverter
+    implementation Libraries.okhttp
+
+    implementation Libraries.room
+    implementation Libraries.roomRxJava
+    kapt Libraries.roomCompiler
+    annotationProcessor Libraries.roomCompiler
+}

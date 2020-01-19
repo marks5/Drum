@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion AndroidSdk.compile
+    buildToolsVersion AndroidSdk.buildTools
+
+    defaultConfig {
+        minSdkVersion AndroidSdk.min
+        targetSdkVersion AndroidSdk.target
+        versionCode AndroidSdk.versionCode
+        versionName AndroidSdk.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFiles 'consumer-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation Libraries.kotlinStdLib
+
+    testImplementation TestLibraries.junit4
+    testImplementation TestLibraries.mockk
+    testImplementation TestLibraries.truth
+    testImplementation TestLibraries.mockWebServer
+    testImplementation TestLibraries.androidxCoreTesting
+
+    androidTestImplementation TestLibraries.junit4
+    androidTestImplementation AndroidTestLibraries.androidxTestRunner
+    androidTestImplementation AndroidTestLibraries.espresso
+    androidTestImplementation TestLibraries.mockk
+}

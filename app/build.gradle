@@ -1,0 +1,83 @@
+import environment.Environment
+
+apply plugin: BuildPlugins.androidApplication
+apply plugin: BuildPlugins.kotlinAndroid
+apply plugin: BuildPlugins.kotlinAndroidExtensions
+apply plugin: BuildPlugins.kotlinKapt
+
+android {
+    compileSdkVersion AndroidSdk.compile
+    buildToolsVersion AndroidSdk.buildTools
+
+    defaultConfig {
+        applicationId "br.com.drum"
+        minSdkVersion AndroidSdk.min
+        targetSdkVersion AndroidSdk.target
+        versionCode AndroidSdk.versionCode
+        versionName AndroidSdk.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+    }
+
+    buildTypes {
+
+        debug {
+            applicationIdSuffix ".debug"
+
+            buildConfigField "String", Environment.host, Environment.Debug.host
+            buildConfigField "String", Environment.key, Environment.Debug.key
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", Environment.host, Environment.Release.host
+            buildConfigField "String", Environment.key, Environment.Release.key
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(path: ':domain')
+    implementation project(path: ':data')
+    implementation project(path: ':player')
+
+    implementation Libraries.appCompat
+    implementation Libraries.constraintLayout
+
+    testImplementation TestLibraries.junit4
+    androidTestImplementation TestLibraries.testRunner
+    androidTestImplementation TestLibraries.espresso
+
+    implementation Libraries.cardView
+    implementation Libraries.recyclerView
+
+    implementation Libraries.kotlinStdLib
+    implementation Libraries.ktxCore
+
+    implementation Libraries.materialDesign
+
+    implementation Libraries.koin
+    implementation Libraries.koinAndroid
+    implementation Libraries.koinAndroidFragment
+    implementation Libraries.koinAndroidScope
+    implementation Libraries.koinAndroidViewModel
+
+    implementation Libraries.lifecycle
+    implementation Libraries.rxJava
+    implementation Libraries.rxKotlin
+    implementation Libraries.rxAndroid
+
+    implementation Libraries.glide
+    kapt Libraries.glideCompiler
+}
